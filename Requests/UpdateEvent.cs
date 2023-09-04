@@ -7,5 +7,6 @@
         public string Description { get; set; } = string.Empty;
 
         public string Location { get; set; } =string .Empty;
+        public DateTime DateTime { get; set; } = DateTime.Today;
     }
 }

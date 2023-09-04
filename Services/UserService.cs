@@ -1,8 +1,10 @@
-﻿using EventManagement.Data;
+﻿
+using EventManagement.Data;
 using EventManagement.Models;
 using EventManagement.Requests;
 using EventManagement.Services.Iservices;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace EventManagement.Services
 {
@@ -13,51 +15,74 @@ namespace EventManagement.Services
         {
             _context = context;
         }
-        public async Task<string> AddUserAsync(Users user)
+        public async Task<Users> GetUserByEmailAsync(String email)
         {
-            _context.Users.Add(user);
+            return await _context.Users.Where(x => x.Email == email).FirstOrDefaultAsync();
+        }
+        public async Task<string> RegisterUser(Users users)
+        {
+            _context.Users.Add(users);
             await _context.SaveChangesAsync();
             return "User Created Successfully";
         }
 
-        //public async Task<string> BuyTicket(BuyTicket buyTicket)
-        //{
-        //        var user = await _context.Users.Where(x => x.UserId == buyTicket.UserId).FirstOrDefaultAsync();
-        //        var event = await _context.Events.Where(x => x.EventId == buyTicket.EventId).FirstOrDefaultAsync();
-        //        if (user != null && event != null)
-        //        {
-        //            //add event or user
-        //            user.Events.Add(course);
-                   
-        //            await _context.SaveChangesAsync();
-        //            return "Event Purchased Successffully!!";
-        //        }
+        public async Task<string> BuyTicket(BuyTicket buyTicket)
+        {
+            var users = await _context.Users.Where(x => x.UserId == buyTicket.UserId).FirstOrDefaultAsync();
+            var events = await _context.Events.Where(x => x.EventId == buyTicket.EventId).FirstOrDefaultAsync();
+                if (users != null && events!= null)
+                {
+                  //add event or user
+                 
+                  events.Users.Add(users); 
 
-        //        throw new Exception("Invalid Ids");
-            
-        //}
+                  await _context.SaveChangesAsync();
+                return "Ticket Purchased Successffully!!";
+                }
 
+                
+                // Check if the event is full.
+                if (events.Users.Count >= events.Capacity)
+                {
+                    return "The event is full.";
+                }
+
+            // Create and save the registration.
+            var eventRegistration = new BuyTicket
+            {
+                UserId = users.UserId,
+                EventId = events.EventId,
+
+            };
+
+                 return "Registration successful.";
+
+                
+          throw new Exception("Invalid Ids");
+        }
         public async Task<string> DeleteUserAsync(Users users)
         {
-            _context.Users.Remove(users);
-            await _context.SaveChangesAsync();
-            return "User Deleted Successfully";
+        _context.Users.Remove(users);
+        await _context.SaveChangesAsync();
+        return "User Deleted Successfully";
         }
-
         public async Task<IEnumerable<Users>> GetAllUsersAsync()
         {
-
-            return await _context.Users.ToListAsync();
+        return await _context.Users.ToListAsync();
         }
+
+        
 
         public async Task<Users> GetUserByIdAsync(Guid id)
         {
-            return await _context.Users.Where(x => x.Id == id).FirstOrDefaultAsync();
+            return await _context.Users.Where(x => x.UserId == id).FirstOrDefaultAsync();
         }
 
-        public Task<string> UpdateUserAsync(Users users)
+        public async Task<string> UpdateUserAsync(Users users)
         {
-            throw new NotImplementedException();
+            _context.Users.Update(users);
+            await _context.SaveChangesAsync();
+            return "User Updated Successfully";
         }
     }
 }

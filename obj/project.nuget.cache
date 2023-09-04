@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JfYe7jk3psuAOD7U8ysaKLUapW7qzRG0mUdt4aELYwJRt5Q+cDo9r5Uxak8kvBg/FOXpNYmzUu2k4vXnF2ovkg==",
+  "dgSpecHash": "14iBBqE7iSjd9kAx7UsCD0l2b0+ptOUZr+sAl+3b/klYys5SqIbvqQbvWxP8TsirldeEaheSwy0HiBISnwtZtg==",
   "success": true,
   "projectFilePath": "C:\\Users\\USER\\Documents\\JituTraining\\Assessments\\Week 5 assessment\\EventManagementSystem\\EventManagement\\EventManagement.csproj",
   "expectedPackageFiles": [
@@ -8,7 +8,9 @@
     "C:\\Users\\USER\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.10\\microsoft.aspnetcore.authentication.jwtbearer.7.0.10.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.9\\microsoft.aspnetcore.openapi.7.0.9.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

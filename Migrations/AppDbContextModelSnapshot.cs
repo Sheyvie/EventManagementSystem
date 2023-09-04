@@ -24,7 +24,7 @@ namespace EventManagement.Migrations
 
             modelBuilder.Entity("EventManagement.Models.Events", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("EventId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -46,25 +46,17 @@ namespace EventManagement.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int>("ticketAmount")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("usersId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("usersId");
+                    b.HasKey("EventId");
 
                     b.ToTable("Events");
                 });
 
             modelBuilder.Entity("EventManagement.Models.Users", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -76,28 +68,50 @@ namespace EventManagement.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("phoneNumber")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("EventManagement.Models.Events", b =>
+            modelBuilder.Entity("EventsUsers", b =>
                 {
-                    b.HasOne("EventManagement.Models.Users", "users")
-                        .WithMany("Events")
-                        .HasForeignKey("usersId")
+                    b.Property<Guid>("EventsEventId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UsersUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("EventsEventId", "UsersUserId");
+
+                    b.HasIndex("UsersUserId");
+
+                    b.ToTable("EventsUsers");
+                });
+
+            modelBuilder.Entity("EventsUsers", b =>
+                {
+                    b.HasOne("EventManagement.Models.Events", null)
+                        .WithMany()
+                        .HasForeignKey("EventsEventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("users");
-                });
-
-            modelBuilder.Entity("EventManagement.Models.Users", b =>
-                {
-                    b.Navigation("Events");
+                    b.HasOne("EventManagement.Models.Users", null)
+                        .WithMany()
+                        .HasForeignKey("UsersUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

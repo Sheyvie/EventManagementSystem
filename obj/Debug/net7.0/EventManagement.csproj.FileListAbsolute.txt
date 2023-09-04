@@ -76,3 +76,5 @@ C:\Users\USER\Documents\JituTraining\Assessments\Week 5 assessment\EventManageme
 C:\Users\USER\Documents\JituTraining\Assessments\Week 5 assessment\EventManagementSystem\EventManagement\obj\Debug\net7.0\EventManagement.pdb
 C:\Users\USER\Documents\JituTraining\Assessments\Week 5 assessment\EventManagementSystem\EventManagement\obj\Debug\net7.0\EventManagement.genruntimeconfig.cache
 C:\Users\USER\Documents\JituTraining\Assessments\Week 5 assessment\EventManagementSystem\EventManagement\obj\Debug\net7.0\ref\EventManagement.dll
+C:\Users\USER\Documents\JituTraining\Assessments\Week 5 assessment\EventManagementSystem\EventManagement\bin\Debug\net7.0\BCrypt.Net-Next.dll
+C:\Users\USER\Documents\JituTraining\Assessments\Week 5 assessment\EventManagementSystem\EventManagement\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

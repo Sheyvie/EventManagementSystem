@@ -3,6 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using EventManagement.Services;
 using EventManagement.Services.Iservices;
 using System;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.OpenApi.Models;
+using EventManagement.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,9 +25,27 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 //Register Services ----Dependency Injection
 
 builder.Services.AddScoped<IUserService, UserService>();
-//builder.Services.AddScoped<IEventService, EventService>();
+builder.Services.AddScoped<IEventService, EventService>();
 //AutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    options.JsonSerializerOptions.WriteIndented = true;
+});
+//Authentication
+
+
+//authentication
+builder.AddAppAuthentication();
+
+//Adding Authorization options
+
+builder.addAuthorizationExtension();
+
+builder.AddSwaggenGenExtension();
+
 
 var app = builder.Build();
 
@@ -38,6 +60,7 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 
 app.UseAuthorization();
 

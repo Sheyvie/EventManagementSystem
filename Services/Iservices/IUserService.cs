@@ -6,12 +6,14 @@ namespace EventManagement.Services.Iservices
     public interface IUserService
     {
 
-        Task<string> AddUserAsync(Users user);
-        Task<string> UpdateUserAsync(Users user);
-        Task<string> DeleteUserAsync(Users user);
-        Task<Users> GetUserByIdAsync(Guid Id);
+        Task<string> RegisterUser(Users users);
+        Task<string> UpdateUserAsync(Users users);
+        Task<string> DeleteUserAsync(Users users);
+        Task<Users> GetUserByIdAsync(Guid id);
+
+        Task<Users> GetUserByEmailAsync(String email);
         //buy ticket
-        //Task<string> BuyTicket(BuyTicket buyTicket);
+        Task<string> BuyTicket(BuyTicket buyTicket);
 
         Task<IEnumerable<Users>> GetAllUsersAsync();    
 
